@@ -28,9 +28,21 @@ function App() {
             storage.setItem("data",JSON.stringify(storageArray));
         };
 
+        const supp = () => {
+            let index = -1;
+            for (let i = 0; i < storageArray["todos"].length; i++) {
+                const todoEl = storageArray["todos"][i];
+                if(todoEl["title"] == title){
+                    index = i;
+                }
+            }
+            storageArray["todos"].splice(index,1);
+            storage.setItem("data",JSON.stringify(storageArray));
+        }
+
         return (
             <div>
-                    <li>{title}<input name type="checkbox" checked={checked} onChange={toggle}></input></li>
+                    <li>{title}<input name type="checkbox" checked={checked} onChange={toggle}></input><button onClick={supp}>Supprimer</button></li>
             </div>
         );
     };
